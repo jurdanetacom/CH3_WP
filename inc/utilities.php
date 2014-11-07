@@ -45,23 +45,19 @@ function total($url){
 
 
 function ch3_share_post(){ ?>
-    <div class="compartirsingle row">
-        <div class="mascompartir large-3 medium-3 small-6 columns">
-            <p style="padding:0 .5em;">¡Compartido <strong><?php $urlpost = get_the_permalink(); echo total($urlpost) ?></strong> veces!</p>
-        </div>
-        <div class="gp large-3 medium-3 small-6 columns">
-            <div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-height="60"></div>
-        </div>
-        <div class="fb large-3 medium-3 small-6 columns">
-            <div class="fb-share-button" data-href="<?php echo get_permalink(); ?>" data-width="80" data-type="box_count"></div>
-        </div>
-        <div class="tw large-3 medium-3 small-6 columns">
-            <a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical" data-url="<?php the_permalink(); ?>" data-via="notilogia" data-lang="es">Twittear</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        </div>
-    </div>
+	<div class="sharing">
+		<div class="small-3 columns fb">
+			<a target="_blank" href="javascript:window.location=%22http://www.facebook.com/sharer.php?u=%22+encodeURIComponent(document.location)+%22&#38;t=%22+encodeURIComponent(document.title)" title="Compartir en facebook"><span class="icon-facebook"></span><span class="hide-for-small">Compartir</span></a>
+		</div>
+		<div class="small-3 columns tw">
+			<a class="top_social" href="javascript:window.location=%22https://twitter.com/share?url=%22+encodeURIComponent(document.location)+%22&text=%22+encodeURIComponent(document.title)"><span class="icon-twitter"></span><span class="hide-for-small">Tweet</span></a>
+		</div>
+		<div class="small-3 columns gp">
+			<a href="https://plusone.google.com/_/+1/confirm?hl=en&url=<?php if(is_home()){echo home_url();}else{the_permalink();} ?>" target="_blank" title="Compartir este artículo en Google Plus"><span class="icon-googleplus"></span><span class="hide-for-small">Google +1</span></a>
+		</div>
+		<div class="small-3 columns shared">
+			<span><span class="triangulocompartir"></span> ◀ <?php echo total(get_the_permalink()) ?> </span>
+		</div>
+	</div>
 <?php }
-
-
-
 ?>
