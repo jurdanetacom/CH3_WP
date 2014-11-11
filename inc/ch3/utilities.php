@@ -1,7 +1,5 @@
 <?php
 
-
-
 function ch3_get_shares($url) {    
   $json_string = file_get_contents("http://www.linkedin.com/countserv/count/share?url=$url&format=json");
   $json = json_decode($json_string, true);
