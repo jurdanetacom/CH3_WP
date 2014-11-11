@@ -36,7 +36,7 @@ function ch3_get_plusones($url) {
 
     return intval( $json[0]['result']['metadata']['globalCounts']['count'] );
 }
-function total($url){
+function ch3_total_shares($url){
     return ch3_get_tweets($url) + ch3_get_shares($url) + ch3_get_likes($url) + ch3_get_plusones($url); 
 }
 
@@ -54,8 +54,30 @@ function ch3_share_post(){ ?>
 			<a href="https://plusone.google.com/_/+1/confirm?hl=en&url=<?php if(is_home()){echo home_url();}else{the_permalink();} ?>" target="_blank" title="Compartir este artículo en Google Plus"><span class="icon-googleplus"></span><span class="hide-for-small">Google +1</span></a>
 		</div>
 		<div class="small-3 columns shared">
-			<span><span class="triangulocompartir"></span> ◀ <?php echo total(get_the_permalink()) ?> </span>
+			<span><span class="triangulocompartir"></span>  <?php echo ch3_total_shares(get_the_permalink()) ?> </span>
 		</div>
 	</div>
 <?php }
+
+function breadcrumb_links() {
+    if (!is_home()) {
+        echo '<nav class="breadcrumbs" title="'.get_bloginfo('description').'">';
+        echo '<a href="'.get_bloginfo('wpurl').'">';bloginfo('name');
+        echo "</a>  ";
+        if (is_category() || is_single()) {
+            the_category();
+            if (is_single()) {
+                echo '<a href="'.get_permalink().'" class="current">';
+                the_title();
+                echo "</a>";
+            }
+        } elseif (is_page()) {
+            echo '<a href="'.get_permalink().'" class="current">';
+            echo the_title().'</nav>';
+            echo "</a>";
+        }
+        echo "</nav>";
+    }
+}
+
 ?>
